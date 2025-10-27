@@ -1,7 +1,7 @@
 # To print the procent there must be a file oceny_test_rec.out in the same directory with the scrypt
 
 num_of_words = 5000
-n_steps = 5000
+n_steps = 500
 
 import time
 start = time.time()
@@ -146,7 +146,7 @@ def line_search(data_x, data_y, phi, gradient, thresh=.001, max_dist=1.0, max_it
             b = a + (b - a) / 2
             c = a + (c - a) / 2
             d = a + (d - a) / 2
-            continue;
+            continue
         if lossb < lossc:
             d = c
             b = a + (d - a) / 3
@@ -161,7 +161,7 @@ def line_search(data_x, data_y, phi, gradient, thresh=.001, max_dist=1.0, max_it
 def gradient_descent_step(data_x, data_y, phi):
     gradient = compute_gradient(data_x, data_y, phi)
     direction = -gradient
-    norm = np.linalg.norm(direction) + 1e-12
+    norm = np.linalg.norm(direction)
     unit_dir = direction / norm
     alpha = line_search(data_x, data_y, phi, unit_dir)
     phi = phi + unit_dir * alpha
